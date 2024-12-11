@@ -1,15 +1,17 @@
 from . import db
+# Definir una constante para el literal duplicado
+CONTENIDOS_ID = 'Contenidos.id'
 
 # Definir la tabla de asociación para géneros y contenidos
 generos_contenidos = db.Table('GenerosContenidos',
-    db.Column('idContenido', db.Integer, db.ForeignKey('Contenidos.id'), primary_key=True),
+    db.Column('idContenido', db.Integer, db.ForeignKey(CONTENIDOS_ID), primary_key=True),
     db.Column('idGenero', db.Integer, db.ForeignKey('Generos.id'), primary_key=True)
 )
 
 # Definir la tabla de asociación para personajes y contenidos
 personajes_contenidos = db.Table('PersonajesContenidos',
     db.Column('personaje_id', db.Integer, db.ForeignKey('Personajes.id'), primary_key=True),
-    db.Column('contenido_id', db.Integer, db.ForeignKey('Contenidos.id'), primary_key=True),
+    db.Column('contenido_id', db.Integer, db.ForeignKey(CONTENIDOS_ID), primary_key=True),
     db.Column('rol', db.String, nullable=False)
 )
 
@@ -37,7 +39,7 @@ class Contenido(db.Model):
 
 class Episodio(Contenido):
     __tablename__ = 'Episodios'
-    id = db.Column(db.Integer, db.ForeignKey('Contenidos.id'), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey(CONTENIDOS_ID), primary_key=True)
     idTemporada = db.Column(db.Integer, db.ForeignKey('Temporadas.id'), nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'episodio',
