@@ -7,6 +7,7 @@ import random
 
 auth_bp = Blueprint('auth', __name__)
 
+AUTH_PERFILES = 'auth.perfiles'
 
 @auth_bp.route('/debug_routes')
 def debug_routes():
@@ -43,7 +44,7 @@ def verificar_login():
     usuario = UserService.verificar_credenciales(email, password)
     if usuario:
         session['usuario'] = usuario  # Almacena los datos del usuario en la sesión
-        return redirect(url_for('auth.perfiles'))
+        return redirect(url_for(AUTH_PERFILES))
     return redirect(url_for('auth.login', email=email))
 
 @auth_bp.route('/register')
@@ -117,7 +118,7 @@ def verificar_crear_perfil():
     response_perfil = UserService.crear_perfil(nuevo_perfil)
     if response_perfil:
         print(f"Perfil creado: {response_perfil}")
-        return redirect(url_for('auth.perfiles'))
+        return redirect(url_for(AUTH_PERFILES))
     else:
         print("Error al crear el perfil.")
     return redirect(url_for('auth.crear_perfil'))
@@ -126,24 +127,24 @@ def verificar_crear_perfil():
 def eliminar_perfil():
     perfil_id = request.form.get('id')
     if not perfil_id:
-        return redirect(url_for('auth.perfiles'))
+        return redirect(url_for(AUTH_PERFILES))
     
     response = UserService.eliminar_perfil(perfil_id)
     if response:
         print(f"Perfil eliminado: {perfil_id}")
     else:
         print("Error al eliminar el perfil.")
-    return redirect(url_for('auth.perfiles'))
+    return redirect(url_for(AUTH_PERFILES))
 
 @auth_bp.route('/editar_perfil')
 def editar_perfil():
     perfil_id = request.args.get('id')
     if not perfil_id:
-        return redirect(url_for('auth.perfiles'))
+        return redirect(url_for(AUTH_PERFILES))
     
     perfil = UserService.obtener_perfil(perfil_id)
     if not perfil:
-        return redirect(url_for('auth.perfiles'))
+        return redirect(url_for(AUTH_PERFILES))
     
     return render_template('editar_perfil.html', perfil=perfil)
 
@@ -163,7 +164,7 @@ def verificar_editar_perfil():
         print(f"Perfil actualizado: {perfil_id}")
     else:
         print("Error al actualizar el perfil.")
-    return redirect(url_for('auth.perfiles'))
+    return redirect(url_for(AUTH_PERFILES))
 
 
 
@@ -174,12 +175,12 @@ def display_videos():
     if perfil_id:
         perfil = UserService.obtener_perfil(perfil_id)
         if not perfil:
-            return redirect(url_for('auth.perfiles'))
+            return redirect(url_for(AUTH_PERFILES))
         session['perfil'] = perfil  # Almacena el perfil en la sesión
     else:
         perfil = session.get('perfil')
         if not perfil:
-            return redirect(url_for('auth.perfiles'))
+            return redirect(url_for(AUTH_PERFILES))
         perfil_id = perfil.get('idperfil')
 
     usuario = session.get('usuario')
@@ -376,7 +377,7 @@ def agregar_favorito():
     try:
         perfil = session.get('perfil')
         if not perfil:
-            return redirect(url_for('auth.perfiles'))
+            return redirect(url_for(AUTH_PERFILES))
         
         content_id = request.form.get('contentId')
         tipo = request.form.get('tipo')
@@ -399,7 +400,7 @@ def eliminar_favorito():
     try:
         perfil = session.get('perfil')
         if not perfil:
-            return redirect(url_for('auth.perfiles'))
+            return redirect(url_for(AUTH_PERFILES))
         
         content_id = request.form.get('contentId')
         usuario_id = perfil.get('idperfil')
@@ -422,7 +423,7 @@ def ver_video():
     try:
         perfil = session.get('perfil')
         if not perfil:
-            return redirect(url_for('auth.perfiles'))
+            return redirect(url_for(AUTH_PERFILES))
         
         content_id = request.form.get('contentId')
         tipo = request.form.get('tipo')

@@ -1,0 +1,10 @@
+CONTENT_API/__pycache__/*
+RECOMENDACIONES_API/config/__pycache__/*
+USERS_API/usuarios/__pycache__/*
+WEB/app/services/__pycache__/*
+WEB/app/routes/__pycache__/*
+WEB/app/__pycache__/*
+WEB/.env
+CONTENT_API/app/__pycache__/*
+USERS_API/api_usuarios/__pycache__/*
+RECOMENDACIONES_API/routes/__pycache__/*
