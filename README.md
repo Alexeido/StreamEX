@@ -1,4 +1,4 @@
-# StreamEx
+<img width="500" alt="Logo de StreamEx" src="https://github.com/user-attachments/assets/91837e93-2884-48a9-8fa6-604fffa5f7e2" />
 
 StreamEx es una aplicación desarrollada para la transmisión de contenido multimedia por streaming. La aplicación se basa en el uso de tres microservicios, cada uno encargado de una funcionalidad específica:
 
@@ -20,6 +20,14 @@ StreamEx es una aplicación desarrollada para la transmisión de contenido multi
 - **Django**: Utilizado para el microservicio de usuarios.
 - **Flask**: Utilizado para los microservicios de contenidos y recomendaciones.
 - **HTML/CSS/JavaScript**: Utilizados para la interfaz de usuario.
+
+
+
+## Vistazo Rápido a la Aplicación
+
+<img width="800" alt="Captura de pantalla de la interfaz de usuario de StreamEx (Pantalla principal)" src="https://github.com/user-attachments/assets/d8eaf185-821e-4c40-9734-aadbcf48e7c2" />
+
+<img width="800" alt="Captura de pantalla de la interfaz de usuario de StreamEx (Otra sección)" src="https://github.com/user-attachments/assets/0511cdda-e926-4f8c-a34d-28cbb135e91b" />
 
 ## Instalación y Configuración
 
